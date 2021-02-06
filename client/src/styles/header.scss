@@ -1,0 +1,67 @@
+.main-header{
+    .sub-navbar{
+        background-color: #f5f5f5;
+        .login-wrap{
+            a {
+                color: #6a6a6a;
+                font-size: 12px;
+            }
+        }
+        .lang-search-wrap{
+            .header-input-search{
+                border: 1px solid #6a6a6a;
+                cursor: pointer;
+            }
+            .header-input-search:focus{
+                outline-offset:0px
+            }
+            .lang-choose-btn{
+                font-size: 12px;
+                color: white;
+                width: 22px;
+                height: 22px;
+                background-color: #6a6a6a;
+                border: 1px solid #6a6a6a;
+                transition: 0.15s;
+                letter-spacing: 0.03rem;
+            }
+            .lang-choose-btn:hover{
+                border: 1px solid #6a6a6a;
+                background-color: white;
+                color: #6a6a6a;
+            }
+        }
+        
+    }
+    .header-navbar-top{
+        background-color: white;
+        .logo-wrap{
+            overflow: hidden;
+            white-space: nowrap;
+            a {
+              color: black;
+              font-weight: 900;
+              font-size: 60px;
+              user-select: none;
+              text-decoration: underline;
+              .logo-over{
+              }
+                .logo-drive{
+                    color: #d40000;
+                }
+            } 
+        }
+    }
+    .header-navbar-bottom{
+        background-color: white;
+        border-bottom: 2px solid black;
+        ul li a{
+            color:black;
+            transition: 0.15s;
+        }
+        ul li a:hover{
+            color: white;
+            background-color: black;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.main-footer{
+    background-color: #fafafa;
+    .footer-top-wrap{
+        .footer-menu{
+            ul li {
+                color:#6a6a6a;
+            }
+            ul li a{
+                font-size: 14px;
+                color:#6a6a6a;
+            }
+        }
+        .footer-info{
+            p{
+                font-size: 14px;
+                color:#6a6a6a;
+            }
+        }
+    }
+    .footer-bottom-wrap{
+        p{
+            color:#6a6a6a;
+            font-size: 12px;
+        }
+    }
+}

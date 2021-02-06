@@ -1,0 +1,25 @@
+.main-member{
+    min-height:calc(100vh - 292px);
+    .content-wrap{
+        min-height:calc(100vh - 292px);
+        form{
+            background-color: white;
+            width: 500px;
+            .social-icon a{
+                transition: 0.15s;
+            }
+            .social-icon a:hover{
+                transform: scale(0.97);
+            }
+            .social-icon .google-login-button{
+                border: 1px solid #ced4da !important;
+                border-radius: 0.25rem !important;
+                box-shadow: none !important;
+                font-size: 12px !important;
+            }
+            .social-icon .google-login-button>div{
+                margin-right: 0px !important;
+            }
+        }
+    }
+}

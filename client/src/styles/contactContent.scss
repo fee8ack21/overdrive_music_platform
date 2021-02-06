@@ -1,0 +1,10 @@
+.main-contact{
+    min-height:calc(100vh - 292px);
+    .content-wrap{
+        min-height:calc(100vh - 292px);
+        form{
+            width: 500px;
+            background-color: white;
+        }
+    }
+}

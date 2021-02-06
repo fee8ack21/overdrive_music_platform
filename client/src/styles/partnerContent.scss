@@ -1,0 +1,34 @@
+.main-location{
+    min-height:calc(100vh - 292px);
+    .content-wrap{
+        img{
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: 0.15s;
+        }
+        a{
+            position: relative;
+            transition: 0.15s;
+            box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+
+        }
+        a:hover{
+            box-shadow: 0 10px 8px -6px rgba(0, 0, 0, 0.6);
+        }
+        .location-selected{
+            // transform: scale(0.97);
+            border: 2px solid black;
+        }
+        .location-selected:before{
+            content: '';
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: rgba(255,255,255,0.5);
+            z-index: 333;
+        }
+    }
+}
