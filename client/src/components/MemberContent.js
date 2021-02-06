@@ -15,19 +15,11 @@ function MemberContent(props) {
     const [emailValidState, setEmailValidState] = useState('Please enter your email.')
     // 
 
-    const responseGoogle = async response => {
-        // const res = await fetch("http://localhost:3001/membergooglelogin", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         token: response.tokenId
-        //     }),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // })
-        // const data = await res.json()
-        // store returned user somehow
+    const GoogleLoginResponse = async response => {
         console.log(response);
+    }
+    const GoogleLogoutResponse = ()=>{
+        alert('Logout Successfully')
     }
     // 
     const LogIn = function () {
@@ -113,10 +105,20 @@ function MemberContent(props) {
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onSuccess={GoogleLoginResponse}
+                            onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
                             className={"google-login-button"}
+                            isSignedIn={true}
+                        />
+                        <GoogleLogout
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Logout with Google"
+                            onLogoutSuccess={GoogleLogoutResponse}
+                            // onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            className={"google-login-button"}
+                            isSignedIn={false}
                         />
                     </div>
                 </form>
@@ -210,8 +212,8 @@ function MemberContent(props) {
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onSuccess={GoogleLoginResponse}
+                            onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
                             className={"google-login-button"}
                         />
@@ -279,8 +281,8 @@ function MemberContent(props) {
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onSuccess={GoogleLoginResponse}
+                            onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
                             className={"google-login-button"}
                         />
