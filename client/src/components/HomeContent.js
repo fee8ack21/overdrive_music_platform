@@ -8,7 +8,7 @@ import { RiArrowDropRightFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons/lib';
 // 
 import { useTranslation } from "react-i18next";
-
+// 
 function HomeContent() {
     const { t } = useTranslation();
     return (

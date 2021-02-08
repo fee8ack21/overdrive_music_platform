@@ -1,11 +1,12 @@
 import react, { useState } from 'react'
-import { BrowserRouter, Route, Link } from "react-router-dom"
+import { BrowserRouter, Route, Link, useHistory } from "react-router-dom"
 // 
-import { FaFacebookF } from 'react-icons/fa';
-import { FaGoogle } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 import { IconContext } from 'react-icons/lib';
 // 
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
+import { gapi } from 'gapi-script';
+// import { refreshTokenSetup } from '../utils/refreshToken'
 // 
 function MemberContent(props) {
     const [loginState, setLoginState] = useState(0)
@@ -13,13 +14,30 @@ function MemberContent(props) {
     const [passwordState, setPasswordState] = useState(false)
     const [emailState, setEmailState] = useState(false)
     const [emailValidState, setEmailValidState] = useState('Please enter your email.')
+    const history = useHistory();
     // 
-
     const GoogleLoginResponse = async response => {
-        console.log(response);
-    }
-    const GoogleLogoutResponse = ()=>{
-        alert('Logout Successfully')
+        const res = await fetch("http://localhost:3001/membergooglelogin", {
+            method: "POST",
+            body: JSON.stringify({
+                token: response.tokenId
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await res.json()
+        localStorage.setItem('user', JSON.stringify(data))
+        props.setIfLoginState(true)
+        // refreshTokenSetup(response)
+        // plugin issue not solved yet
+        // once get the data I want, disconnect google 
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(
+            auth2.disconnect().then(console.log('LOGOUT SUCCESSFUL'))
+        )
+        // 
+        history.push("/");
     }
     // 
     const LogIn = function () {
@@ -106,19 +124,16 @@ function MemberContent(props) {
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
                             onSuccess={GoogleLoginResponse}
-                            onFailure={GoogleLoginResponse}
+                            // onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
-                            className={"google-login-button"}
-                            isSignedIn={true}
-                        />
-                        <GoogleLogout
-                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                            buttonText="Logout with Google"
-                            onLogoutSuccess={GoogleLogoutResponse}
-                            // onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                            className={"google-login-button"}
-                            isSignedIn={false}
+                            render={renderProps => (
+                                <button className="google-button d-flex align-items-center py-2" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                    <IconContext.Provider value={{ size: '16px' }}>
+                                        <FcGoogle className="mr-1" />
+                                    </IconContext.Provider>Google Login
+                                </button>
+                            )}
+                            autoLoad={false}
                         />
                     </div>
                 </form>
@@ -213,9 +228,16 @@ function MemberContent(props) {
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
                             onSuccess={GoogleLoginResponse}
-                            onFailure={GoogleLoginResponse}
+                            // onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
-                            className={"google-login-button"}
+                            render={renderProps => (
+                                <button className="google-button d-flex align-items-center py-2" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                    <IconContext.Provider value={{ size: '16px' }}>
+                                        <FcGoogle className="mr-1" />
+                                    </IconContext.Provider>Google Login
+                                </button>
+                            )}
+                            autoLoad={false}
                         />
                     </div>
                 </form>
@@ -282,9 +304,16 @@ function MemberContent(props) {
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
                             onSuccess={GoogleLoginResponse}
-                            onFailure={GoogleLoginResponse}
+                            // onFailure={GoogleLoginResponse}
                             cookiePolicy={'single_host_origin'}
-                            className={"google-login-button"}
+                            render={renderProps => (
+                                <button className="google-button d-flex align-items-center py-2" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                    <IconContext.Provider value={{ size: '16px' }}>
+                                        <FcGoogle className="mr-1" />
+                                    </IconContext.Provider>Google Login
+                                </button>
+                            )}
+                            autoLoad={false}
                         />
                     </div>
                 </form>

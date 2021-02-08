@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
+    "gapi-script": "^1.1.0",
     "i18next": "^19.8.7",
     "i18next-http-backend": "^1.1.0",
     "node-sass": "^4.14.1",

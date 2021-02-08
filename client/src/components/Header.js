@@ -1,4 +1,4 @@
-import react, { useState } from 'react'
+import react, { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Link } from "react-router-dom"
 // 
 import { FaUserCircle } from 'react-icons/fa';
@@ -14,7 +14,14 @@ function Header(props) {
     const { t, i18n } = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
-    };
+    }
+    // 
+    const GoogleLogoutResponse = function () {
+        localStorage.removeItem('user')
+        props.setIfLoginState(false)
+        window.location.replace("/");
+    }
+
     return (
         <>
             <header className="main-header">
@@ -23,12 +30,9 @@ function Header(props) {
                         <div className="login-wrap d-flex justify-content-end">
                             {parentIfLoginState ?
                                 (<>
-                                    <Link to='#!' className="d-flex align-items-center" onClick={(e) => {
-                                        e.preventDefault()
-                                        localStorage.removeItem('user')
-                                        props.setIfLoginState(false)
-                                        window.location.replace("/");
-                                    }}>
+                                    <Link to='#!' className="d-flex align-items-center"
+                                        onClick={GoogleLogoutResponse}
+                                    >
                                         <IconContext.Provider value={{ color: '#6a6a6a', size: '16px' }}>
                                             <FaUserCircle className="mr-2" />
                                         </IconContext.Provider>
@@ -45,8 +49,6 @@ function Header(props) {
                                     </Link>
                                 </>)
                             }
-
-
                             {/*  */}
                             <Link to="#!" className="d-flex align-items-center">
                                 <IconContext.Provider value={{ color: '#6a6a6a', size: '16px' }}>

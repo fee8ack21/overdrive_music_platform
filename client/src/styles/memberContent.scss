@@ -11,14 +11,17 @@
             .social-icon a:hover{
                 transform: scale(0.97);
             }
-            .social-icon .google-login-button{
+            .social-icon .google-button{
                 border: 1px solid #ced4da !important;
                 border-radius: 0.25rem !important;
                 box-shadow: none !important;
                 font-size: 12px !important;
+                background-color: white;
+                margin: 0px 8px 0px 8px;
+                transition: 0.15s;
             }
-            .social-icon .google-login-button>div{
-                margin-right: 0px !important;
+            .social-icon .google-button:hover{
+                transform: scale(0.98);
             }
         }
     }

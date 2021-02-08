@@ -35,7 +35,7 @@ app.post('/memberlogin', (req, res) => {
         console.log(results.length)
         if (error) throw error;
         console.log('post login success')
-        if (results.length > 0) {
+        if (results.length > 0 && results[0].google !== 'yes') {
             if (results[0].password === req.body.password) {
                 res.send('登入成功')
             } else {
@@ -47,27 +47,36 @@ app.post('/memberlogin', (req, res) => {
     })
 })
 // member page / google login
-// const { OAuth2Client } = require('google-auth-library')
-// const client = new OAuth2Client(process.env.LOGIN_CLIENT_ID)
-// app.post("/membergooglelogin", async (req, res) => {
-//     const { token }  = req.body
-//     const ticket = await client.verifyIdToken({
-//         idToken: token,
-//         audience: process.env.LOGIN_CLIENT_ID
-//     });
-//     const { name, email, picture } = ticket.getPayload();    
-//     const user = await db.user.upsert({ 
-//         where: { email: email },
-//         update: { name, picture },
-//         create: { name, email, picture }
-//     })
-//     res.status(201)
-//     res.json(user)
-// })
+const { OAuth2Client } = require('google-auth-library')
+const client = new OAuth2Client(process.env.LOGIN_CLIENT_ID)
+app.post("/membergooglelogin", async (req, res) => {
+    const { token } = req.body
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.LOGIN_CLIENT_ID
+    });
+    const { name, email, picture } = ticket.getPayload();
+    let sql1 = `SELECT * FROM member WHERE email='${email}'`
+    let sql2 = `INSERT INTO member (account, email,google) VALUES ('${name}','${email}','yes')`
+    await db.query(sql1, function (error, results) {
+        if (results.length === 0) {
+            db.query(sql2, function (error, results) {
+                if (error) { throw error }
+                const data = { account: name }
+                res.status(201)
+                res.send(JSON.stringify(data))
+            })
+        } else {
+            const data = { account: name }
+            res.status(201)
+            res.send(JSON.stringify(data))
+        }
+    })
+})
 // member page / sign up
 app.post('/membersignup', (req, res) => {
     let sql1 = `SELECT * FROM member WHERE account = '${req.body.account}'`
-    let sql2 = `INSERT INTO member (account, password, email) VALUES ('${req.body.account}', '${req.body.password}', '${req.body.email}')`
+    let sql2 = `INSERT INTO member (account, password, email, google) VALUES ('${req.body.account}', '${req.body.password}', '${req.body.email}','no')`
     db.query(sql1, function (error, results) {
         if (error) throw error;
         console.log('post signup success')
@@ -89,9 +98,9 @@ app.post('/memberforgot', (req, res) => {
         let memberEmail = results[0].email
         if (error) throw error;
         console.log('post forgot success')
-        if (results.length === 0) {
+        if (results.length === 0 || results[0].google === 'yes') {
             res.send('無此信箱')
-        } else {
+        }else {
             db.query(sql2, function (error, results) {
                 const emailService = require('./lib/email')()
                 emailService.send(
