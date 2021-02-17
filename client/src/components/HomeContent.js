@@ -1,6 +1,3 @@
-import react from 'react'
-import { BrowserRouter, Route, Link } from "react-router-dom"
-// 
 import Carousel from 'react-bootstrap/Carousel';
 // 
 import { AiFillSound } from 'react-icons/ai';
@@ -170,22 +167,22 @@ function HomeContent() {
                         </div>
                         <div className="row partner-list pt-2">
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/legacy.jpg" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/legacy.jpg" className="img-fluid" alt=""></img></a>
                             </div>
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/jack.jpg" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/jack.jpg" className="img-fluid" alt=""></img></a>
                             </div>
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/small_place.png" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/small_place.png" className="img-fluid" alt=""></img></a>
                             </div>
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/live_warehouse.png" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/live_warehouse.png" className="img-fluid" alt=""></img></a>
                             </div>
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/sound.png" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/sound.png" className="img-fluid" alt=""></img></a>
                             </div>
                             <div className="col-2 py-2">
-                                <a href="#!"><img src="images/partner/there.jpg" className="img-fluid"></img></a>
+                                <a href="#!"><img src="images/partner/there.jpg" className="img-fluid" alt=""></img></a>
                             </div>
                         </div>
                     </div>

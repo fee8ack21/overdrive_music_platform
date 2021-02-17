@@ -1,13 +1,9 @@
-import react from "react";
 import { renderRoutes } from "react-router-config";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
 } from "react-router-dom";
 // 
-import logo from './logo.svg';
 // import Home from './pages/Home'
 // import Member from './pages/Member'
 // import Contact from './pages/Contact'

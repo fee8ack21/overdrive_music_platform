@@ -1,5 +1,5 @@
-import react, { useState } from 'react'
-import { BrowserRouter, Route, Link, useHistory } from "react-router-dom"
+import { useState } from 'react'
+import { Link, useHistory } from "react-router-dom"
 // 
 import { FcGoogle } from 'react-icons/fc';
 import { IconContext } from 'react-icons/lib';

@@ -1,5 +1,5 @@
-import react, { useState, useEffect } from 'react'
-import { BrowserRouter, Route, Link } from "react-router-dom"
+import { useState } from 'react'
+import { Link } from "react-router-dom"
 // 
 import { FaUserCircle } from 'react-icons/fa';
 import { FaShoppingCart } from 'react-icons/fa';

@@ -1,4 +1,3 @@
-import react from "react";
 import Home from '../pages/Home'
 import Member from '../pages/Member'
 import Contact from '../pages/Contact'

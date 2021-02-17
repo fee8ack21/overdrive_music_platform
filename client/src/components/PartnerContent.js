@@ -1,5 +1,4 @@
-import react, { useState, useEffect } from 'react'
-import { BrowserRouter, Route, Link } from "react-router-dom"
+import { useState, useEffect } from 'react'
 // 
 import { Loader } from "@googlemaps/js-api-loader"
 // 
@@ -115,7 +114,7 @@ function PartnerContent() {
                                                         e.preventDefault();
                                                         setMapCenterInfoState(mapInfoState[i]);
                                                     }}>
-                                                        <img src={mapInfoState[i].image}></img>
+                                                        <img src={mapInfoState[i].image} alt=""></img>
                                                     </a>
                                                     <h5 className="text-center mt-2" style={{ fontSize: '14px' }}>{mapInfoState[i].name}</h5>
                                                 </div>
